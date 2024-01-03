@@ -1,0 +1,23 @@
+{
+	"name": "cant_talk",
+	"description": "cant_talk",
+	"version": "0.1.0",
+	"license": "MIT",
+	"author": {
+		"name": "fomal"
+	},
+	"repository": {
+		"url": "https://github.com/fomal/cant_talking.git"
+	},
+	"main": "app.js",
+	"scripts": {
+		"dev": "electronmon ."
+	},
+	"devDependencies": {
+		"electron": "^28.1.0",
+		"electronmon": "^2.0.2"
+	},
+	"dependencies": {
+		"electron-reload": "^2.0.0-alpha.1"
+	}
+}
