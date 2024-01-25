@@ -1,22 +1,21 @@
 const axios = require('axios');
-const { getMode } = require('../mode/talk_mode');
+const { getMode } = require('./talk_mode');
 
-const name = 'test'
-const LINE_NOTIFY_TOKEN = 'linenotifytoken';
 const END_POINT = 'https://notify-api.line.me/api/notify';
 
-const sendMessageToLineNotify = async () => {
+const sendMessageToLineNotify = async (name, token) => {
 
 	const message = (getMode() === 'cant')? `${name}さんは現在会話ができません。お静かにしてください。`:
-																					`${name}さんは会話ができるようになりました。`
+																					`${name}さんが会話できるようになりました。`
 
+	console.log(token);
 	try {
 		await axios.post(
 			END_POINT,
 			{ message },
 			{ headers: {
 					'Content-Type': 'application/x-www-form-urlencoded',
-					Authorization: `Bearer ${LINE_NOTIFY_TOKEN}`,
+					Authorization: `Bearer ${token}`,
 				},
 			}
 		);

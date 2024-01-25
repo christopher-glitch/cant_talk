@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@500;600;700;800&display=swap');
+
+
+body {
+  margin: 0;
+}
+
+text {
+  font-family: 'Exo 2', sans-serif;
+  color: rgb(79, 79, 79);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+#title-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  height: 100vh;
+  background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 10%, rgba(0, 212, 255, 1) 100%);
+}
+
+#setting-area {
+  display: flex;
+  flex-direction: column;
+  width: 70vw;
+  height: 100vh;
+  background: rgb(243, 243, 255);
+}
+
+text.title {
+  font-size: xx-large;
+  font-weight: 800;
+  font-family: 'Exo 2', sans-serif;
+  color: rgb(226, 226, 226);
+  margin: 20px;
+}
+
+.setting {
+  width: 113px;
+  font-size: xx-large;
+  font-weight: 800;
+  margin: 20px;
+  border-bottom: 2px solid #9a9a9a;
+  padding-bottom: 5px;
+}
+
+.form-container {
+  height: 100vh;
+  width: 100vw;
+}
+
+.form-container label {
+  display: grid;
+  font-size: x-large;
+  font-weight: 400;
+  font-family: 'Exo 2', sans-serif;
+  color: rgb(79, 79, 79);
+  margin-left: 20px;
+  margin-bottom: 5px
+}
+
+.form-container input {
+  margin-left: 20px;
+  margin-bottom: 40px;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  border-radius: 10px;
+  line-height: 22px;
+  background-color: transparent;
+  border: 2px solid #2d2a7c;
+  transition: all 0.3s;
+  padding: 8px;
+  width: 50vw;
+  box-sizing: border-box;
+  outline: 0;
+}
+
+.form-button-container {
+  margin-left: 20px;
+  flex-direction: column;
+}
+
+.form-button-container button {
+  text-align: center;
+  font-family: 'Exo 2', sans-serif;
+  font-size: large;
+  background-color: transparent;
+  margin: auto;
+  padding: 15px 40px;
+  margin-right: 20px;
+  font-weight: bold;
+  border: 2px solid #2d2a7c;
+  color: #2d2a7c;
+  border-radius: 8px;
+  transition: 0.5s;
+}
+
+.form-button-container button:hover {
+  color: #fff;
+  background: #2d2a7c;
+}

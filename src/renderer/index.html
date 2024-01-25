@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; font-src 'self' https://fonts.gstatic.com; style-src 'self' https://fonts.googleapis.com"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Can't Talk</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="title-area">
+        <text class="title">Can't Talk</text>
+      </div>
+      <div id="setting-area">
+        <text class="setting">Setting</text>
+        <div class="form-container" id="setting-form">
+          <label>Name:</label>
+          <input type="text" id="user-name" required/>
+          <label>LineNotify Code:</label>
+          <input type="text" pattern="^[a-zA-Z0-9]+$" id="notify-code" required/>
+          <div class="form-button-container">
+            <button onclick="saveSetting()">Save</button>
+            <button onclick="getSetting()">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./save_setting.js"></script>
+  </body>
+</html>

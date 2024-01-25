@@ -9,7 +9,7 @@
 	"repository": {
 		"url": "https://github.com/fomal/cant_talking.git"
 	},
-	"main": "./src/app.js",
+	"main": "./src/main/main.js",
 	"scripts": {
 		"dev": "electronmon ."
 	},
@@ -21,6 +21,7 @@
 		"axios": "^1.6.4",
 		"electron-packager": "^17.1.2",
 		"electron-reload": "^2.0.0-alpha.1",
+		"electron-store": "^8.1.0",
 		"sqlite3": "^5.1.7-rc.0"
 	}
 }
