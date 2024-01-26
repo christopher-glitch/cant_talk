@@ -79,11 +79,9 @@ const toggleMode = () => {
   modeChange();
 
   const setting = store.getToken();
-  console.log(setting)
   if(setting.length > 0){
     sendMessageToLineNotify(setting[0], setting[1]);
   }
-
   updateMenu();
 }
 
@@ -91,7 +89,6 @@ const toggleMode = () => {
 let mainWindow;
 const createWindow = () => {
   if(!mainWindow){
-    console.log(__dirname + "/../preload.js");
     mainWindow = new BrowserWindow({
       width: 750,
       height: 450,
@@ -100,12 +97,13 @@ const createWindow = () => {
       maxWidth: 800,
       maxHeight: 480,
       webPreferences: {
-        preload: __dirname + "/../preload.js",
+        preload: __dirname + "/preload.js",
         nodeIntegration: false,
-        contextIsolation: false,
+        contextIsolation: true,
       }
     });
     mainWindow.loadFile(__dirname + "/../renderer/index.html");
+    mainWindow.webContents.openDevTools({ mode: 'detach' });
 
     mainWindow.on("closed", () => {
       mainWindow = null;

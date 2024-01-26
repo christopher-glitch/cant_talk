@@ -6,13 +6,11 @@ class TokenStore extends Store {
 	}
 
 	saveToken(name, token) {
-		console.log(name, token);
 		this.set('token', [name, token]);
 		return this;
 	}
 
 	getToken() {
-		console.log(this.get('token'));
 		return this.get('token') || [];
 	}
 }
