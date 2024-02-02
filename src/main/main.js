@@ -95,6 +95,7 @@ const createWindow = () => {
       minHeight: 450,
       maxWidth: 800,
       maxHeight: 480,
+      titleBarStyle: 'hiddenInset',
       webPreferences: {
         preload: path.join(__dirname, "/preload.js"),
         nodeIntegration: false,

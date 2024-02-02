@@ -12,8 +12,8 @@
 	"main": "./src/main/main.js",
 	"scripts": {
 		"dev": "electronmon .",
-		"build:macArm": "electron-builder --dir --mac --arm64",
-		"build:macIntel": "electron-builder --dir --mac --x64"
+		"build:macArm": "electron-builder --mac --arm64",
+		"build:macIntel": "electron-builder --mac --x64"
 	},
 	"devDependencies": {
 		"electron": "^28.1.0",
