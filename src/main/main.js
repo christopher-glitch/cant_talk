@@ -4,23 +4,7 @@ const { sendMessageToLineNotify } = require('./line_notify');
 const { TokenStore } = require('./token_store');
 const { getMode } = require("./talk_mode");
 const { modeChange } = require('./talk_mode');
-
 const path = require('path');
-const fs = require('fs');
-
-const logPath = path.join(app.getPath('userData'), 'app.log');
-const logStream = fs.createWriteStream(logPath, { flags: 'a' });
-
-console.log = function (data) {
-  logStream.write(data + '\n');
-};
-
-console.error = function (data) {
-  logStream.write('ERROR: ' + data + '\n');
-};
-
-console.log('Application started');
-
 
 app.on('ready', () => {
   initializeMenu();
@@ -31,13 +15,14 @@ app.on('ready', () => {
 const decideAppIcon = () => {
   let mode_iconfile;
   if (getMode() === 'can') {
-    mode_iconfile = 'icon_can.png'
+    mode_iconfile = 'icon_can'
   } else {
-    mode_iconfile = 'icon_cant.png'
+    mode_iconfile = 'icon_cant'
   }
 
   switch (os.platform()) {
     case 'darwin':
+      mode_iconfile = mode_iconfile + '.png';
       if (nativeTheme.shouldUseDarkColors) {
         return app.isPackaged ? path.join(process.resourcesPath, '/icon/tray/mac/dark/', mode_iconfile):
                                 path.join(__dirname, '/../../assets/icon/tray/mac/dark/', mode_iconfile);
@@ -47,6 +32,7 @@ const decideAppIcon = () => {
                                 path.join(__dirname, '/../../assets/icon/tray/mac/right/', mode_iconfile);
       }
     default:
+      mode_iconfile = mode_iconfile + '.ico';
       return app.isPackaged ? path.join(process.resourcesPath, '/icon/tray/win/'):
                               path.join(__dirname, '/../../assets/icon/tray/win/');
   }
@@ -96,6 +82,7 @@ const toggleMode = () => {
   }
   updateMenu();
 }
+
 
 /*Setting window*/
 let mainWindow;
