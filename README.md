@@ -4,7 +4,7 @@ Line Notifyを利用して家族に自分に話しかけないで欲しいこと
 
 ## 使い方
 
-1. ![Line Notify](https://notify-bot.line.me/ja/)からNotify APIコードを取得
+1. [Line Notify](https://notify-bot.line.me/ja/)からNotify APIコードを取得
 2. アプリの設定画面からAPIコードと通知時に表示される名前を保存
 3. トレイアイコンの「会話不能を伝える」を押すと，Line上で相手に会話ができないことを通知
 4. トレイアイコンの「会話可能を伝える」を押すと，Line上で相手に会話ができるようになったことを通知
