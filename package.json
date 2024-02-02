@@ -4,24 +4,61 @@
 	"version": "0.1.0",
 	"license": "MIT",
 	"author": {
-		"name": "fomal"
+		"name": "christopher-glitch"
 	},
 	"repository": {
-		"url": "https://github.com/fomal/cant_talking.git"
+		"url": "https://github.com/christopher-glitch/cant_talk"
 	},
 	"main": "./src/main/main.js",
 	"scripts": {
-		"dev": "electronmon ."
+		"dev": "electronmon .",
+		"build:macArm": "electron-builder --dir --mac --arm64",
+		"build:macIntel": "electron-builder --dir --mac --x64"
 	},
 	"devDependencies": {
 		"electron": "^28.1.0",
+		"electron-builder": "^24.9.1",
+		"electron-packager": "^17.1.2",
 		"electronmon": "^2.0.2"
 	},
 	"dependencies": {
+		"asar": "^3.2.0",
 		"axios": "^1.6.4",
-		"electron-packager": "^17.1.2",
 		"electron-reload": "^2.0.0-alpha.1",
 		"electron-store": "^8.1.0",
 		"sqlite3": "^5.1.7-rc.0"
+	},
+	"build": {
+		"appId": "com.electron.cant_talk",
+		"productName": "CantTalk",
+		"directories": {
+			"output": "dist"
+		},
+		"files": [
+			"assets/icon/app_icon",
+			"src",
+			"package.json",
+			"package-lock.json"
+		],
+		"extraFiles": [
+			{
+				"from": "assets/icon/tray", 
+				"to": "resources/icon/tray" 
+			}
+		],
+		"mac": {
+			"icon": "assets/icon/app_icon/icon_mac.icns",
+			"target": [
+				"dmg"
+			]
+		},
+		"win": {
+			"icon": "assets/icon/app_icon/icon_win.ico",
+			"target": "nsis"
+		},
+		"nsis": {
+			"oneClick": false,
+			"allowToChangeInstallationDirectory": true
+		}
 	}
 }

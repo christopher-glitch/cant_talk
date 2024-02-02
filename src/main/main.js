@@ -5,17 +5,29 @@ const { TokenStore } = require('./token_store');
 const { getMode } = require("./talk_mode");
 const { modeChange } = require('./talk_mode');
 
+const path = require('path');
+const fs = require('fs');
+
+const logPath = path.join(app.getPath('userData'), 'app.log');
+const logStream = fs.createWriteStream(logPath, { flags: 'a' });
+
+console.log = function (data) {
+  logStream.write(data + '\n');
+};
+
+console.error = function (data) {
+  logStream.write('ERROR: ' + data + '\n');
+};
+
+console.log('Application started');
+
 
 app.on('ready', () => {
   initializeMenu();
-  console.log(app.getPath('userData'))
 });
 
 
 /*Trey menu*/
-const ICON_PATH_MAC = '/../../icon/tray/mac/';
-const ICON_PATH_WINDOWS = '/../../icon/tray/win/';
-
 const decideAppIcon = () => {
   let mode_iconfile;
   if (getMode() === 'can') {
@@ -27,21 +39,22 @@ const decideAppIcon = () => {
   switch (os.platform()) {
     case 'darwin':
       if (nativeTheme.shouldUseDarkColors) {
-        return __dirname + ICON_PATH_MAC + 'dark/' + mode_iconfile;
+        return app.isPackaged ? path.join(process.resourcesPath, '/icon/tray/mac/dark/', mode_iconfile):
+                                path.join(__dirname, '/../../assets/icon/tray/mac/dark/', mode_iconfile);
       }
       else {
-        return __dirname + ICON_PATH_MAC + 'right/' + mode_iconfile;
+        return app.isPackaged ? path.join(process.resourcesPath, '/icon/tray/mac/right/', mode_iconfile) :
+                                path.join(__dirname, '/../../assets/icon/tray/mac/right/', mode_iconfile);
       }
     default:
-      return __dirname + ICON_PATH_WINDOWS;
+      return app.isPackaged ? path.join(process.resourcesPath, '/icon/tray/win/'):
+                              path.join(__dirname, '/../../assets/icon/tray/win/');
   }
 }
 
 
 let tray = null;
 const initializeMenu = () => {
-  const icon = decideAppIcon();
-  tray = new Tray(icon);
   updateMenu();
 }
 
@@ -68,9 +81,8 @@ const updateMenu = () => {
   ]);
 
   const icon = decideAppIcon();
-
+  tray = new Tray(icon);
   tray.setTitle((getMode() === 'can') ? '会話可能' : '会話不能')
-  tray.setImage(icon);
   tray.setToolTip('Can\'t Talk');
   tray.setContextMenu(contextMenu);
 }
@@ -97,13 +109,12 @@ const createWindow = () => {
       maxWidth: 800,
       maxHeight: 480,
       webPreferences: {
-        preload: __dirname + "/preload.js",
+        preload: path.join(__dirname, "/preload.js"),
         nodeIntegration: false,
         contextIsolation: true,
       }
     });
-    mainWindow.loadFile(__dirname + "/../renderer/index.html");
-    mainWindow.webContents.openDevTools({ mode: 'detach' });
+    mainWindow.loadFile(path.join(__dirname + "/../renderer/index.html"));
 
     mainWindow.on("closed", () => {
       mainWindow = null;
