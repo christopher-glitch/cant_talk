@@ -1,7 +1,7 @@
 {
 	"name": "cant_talk",
 	"description": "cant_talk",
-	"version": "1.0.1-beta",
+	"version": "1.0.2-beta",
 	"license": "MIT",
 	"author": {
 		"name": "christopher-glitch"
@@ -13,7 +13,8 @@
 	"scripts": {
 		"dev": "electronmon .",
 		"build:macArm": "electron-builder --mac --arm64",
-		"build:macIntel": "electron-builder --mac --x64"
+		"build:macIntel": "electron-builder --mac --x64",
+		"build:windows": "electron-builder --win --x64"
 	},
 	"devDependencies": {
 		"electron": "^28.1.0",
@@ -25,14 +26,13 @@
 		"asar": "^3.2.0",
 		"axios": "^1.6.4",
 		"electron-reload": "^2.0.0-alpha.1",
-		"electron-store": "^8.1.0",
-		"sqlite3": "^5.1.7-rc.0"
+		"electron-store": "^8.1.0"
 	},
 	"build": {
 		"appId": "com.electron.cant_talk",
 		"productName": "CantTalk",
 		"directories": {
-			"output": "dist"
+			"output": "dist/${os}-${arch}"
 		},
 		"files": [
 			"assets/icon/app_icon",
