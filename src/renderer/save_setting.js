@@ -2,8 +2,16 @@ async function saveSetting (){
 	const userName = document.getElementById("user-name").value;
 	const notifyCode = document.getElementById("notify-code").value;
 
-	await window.dataapi.setToken(userName, notifyCode);
-	alert('Saved successfully');
+	if (userName === "" || notifyCode === "") {
+		alert("Please input name and notify code");
+	}
+	else if (!notifyCode.match(/^[A-Za-z0-9]*$/)) {
+		alert('Input valid Line notify code');
+	} 
+	else {
+		await window.dataapi.setToken(userName, notifyCode);
+		alert('Saved successfully');
+	}
 }
 
 

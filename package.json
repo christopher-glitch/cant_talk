@@ -13,7 +13,8 @@
 	"scripts": {
 		"dev": "electronmon .",
 		"build:macArm": "electron-builder --mac --arm64",
-		"build:macIntel": "electron-builder --mac --x64"
+		"build:macIntel": "electron-builder --mac --x64",
+		"build:windows": "electron-builder --win --x64"
 	},
 	"devDependencies": {
 		"electron": "^28.1.0",
