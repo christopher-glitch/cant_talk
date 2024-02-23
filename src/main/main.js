@@ -138,7 +138,10 @@ const createWindow = () => {
 };
 
 app.on('window-all-closed', () => {
-  if (process.platform != 'darwin') app.quit();
+  /*
+  Override 
+  Not to quit app when a setting window is closed.
+  */
 });
 
 
